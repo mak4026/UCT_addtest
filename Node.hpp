@@ -21,9 +21,9 @@ public:
 private:
   static std::mt19937 mRand;
   static std::uniform_int_distribution<int> mDist;
-  int value;
-  std::shared_ptr<Node> children[8];
-  int visited_count;
-  double total_reward;
-  bool is_leaf;
+  int value;                                        // 親ノードからつながっている辺のvalue
+  std::shared_ptr<Node> children[8];                // ノードの子供へのポインタ
+  int visited_count;                                // 探索中訪れた回数
+  double total_reward;                              // エピソードの総計得点
+  bool is_leaf;                                     // ノードが葉かどうか
 };
