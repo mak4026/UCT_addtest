@@ -12,7 +12,10 @@ void Node::init(std::mt19937 mt){
 
 Node::Node(int v)
 :value(v)
-,children(){
+,children()
+,visited_count(0)
+,total_reward(0)
+,is_leaf(true){
 }
 
 void Node::addChildren(std::shared_ptr<Node> array[]){
@@ -37,4 +40,25 @@ int Node::randomPlayout(){
     std::cout << "route: " << idx << std::endl;
     return value + (*children[idx]).randomPlayout();
   }
+}
+
+void Node::visited(double reward){
+  visited_count++;
+  total_reward += reward;
+}
+
+int Node::getVisitedCount(){
+  return visited_count;
+}
+
+double Node::getAverageReward(){
+  return total_reward / visited_count;
+}
+
+bool Node::isLeaf(){
+  return is_leaf;
+}
+
+void Node::deploy(){
+  is_leaf = false;
 }
