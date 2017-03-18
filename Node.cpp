@@ -15,12 +15,13 @@ void Node::init(std::mt19937 mt){
   mDist = dist;
 }
 
-Node::Node(int v)
+Node::Node(int v, bool ismax)
 :value(v)
 ,children()
 ,visited_count(0)
 ,total_reward(0)
-,is_leaf(true){
+,is_leaf(true)
+,is_max(ismax){
 }
 
 /**
@@ -67,6 +68,8 @@ int Node::randomPlayout(){
  */
 void Node::visited(double reward){
   visited_count++;
+  // MAXノードでは, MINノードがこのノードを評価するので, resultを反転させる
+  if(is_max) reward = 1.0 - reward;
   total_reward += reward;
 }
 

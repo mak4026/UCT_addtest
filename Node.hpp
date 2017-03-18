@@ -7,7 +7,7 @@
 
 class Node {
 public:
-  Node(int value);
+  Node(int value, bool ismax);
   void addChildren(std::shared_ptr<Node> array[]);
   std::shared_ptr<Node> getChild(int i);
   int getValue();
@@ -26,4 +26,5 @@ private:
   int visited_count;                                // 探索中訪れた回数
   double total_reward;                              // エピソードの総計得点
   bool is_leaf;                                     // ノードが葉かどうか
+  bool is_max;
 };
