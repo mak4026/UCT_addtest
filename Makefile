@@ -2,7 +2,7 @@ SrcDir :=
 SourceFiles := $(wildcard *.cpp)
 ObjectFiles := $(SourceFiles:%.cpp=%.o)
 # DependFiles := $(SourceFiles:%.cpp=%.d)
-ExecuteFile := ./uct
+ExecuteFile := ./uct.out
 
 Compiler := g++
 Linker := g++
