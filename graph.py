@@ -8,7 +8,7 @@ x,y = np.loadtxt(sys.stdin, delimiter=",", unpack=True)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(1,1,1)
-ax1.set_title('B = 8, D = 8')
+ax1.set_title('B = 8, D = 4')
 ax1.set_xlabel('number of iterartion')
 ax1.set_ylabel('lose rate')
 ax1.set_xscale("log")
