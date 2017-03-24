@@ -155,5 +155,5 @@ int main(){
   search(*a, 100000);
   cout << a->getVisitedCount() << endl;
 
-  lastAnswer(a);
+  // lastAnswer(a);
 }
