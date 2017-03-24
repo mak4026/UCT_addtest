@@ -6,6 +6,7 @@
 #include <cmath>
 #include <fstream>
 #include <limits>
+#include <string>
 
 using namespace std;
 mt19937 engine;
@@ -108,12 +109,11 @@ double searchUCB(Node& root, int score){
 }
 
 void search(Node& root, int playout_limit){
-  ofstream dump("loserate.csv");
   double total = 0.0;
   for(int i = 0; i < playout_limit; i++){
     double result = searchUCB(root, 0);
     total += result;
-    dump << i << "," << 1.0 - total / (i + 1) << endl;
+    cout << i << "," << 1.0 - total / (i + 1) << endl;
   }
 }
 
@@ -140,20 +140,24 @@ void lastAnswer(shared_ptr<Node> root){
   cout << "sum: " << sum << endl;
 }
 
-int main(){
+int main(int argc, char *argv[]){
   random_device seed_gen;
   engine.seed(seed_gen());
   Node::init(engine);
   DEPLOY_BOUND = 8;
-  // Node a(0);
+
+  if(argc == 2){
+    string seedstr = argv[1];
+    int treeseed = stoi(seedstr);
+    engine.seed(treeseed);
+  }
+
   shared_ptr<Node> a(new Node(0, MAX_NODE));
-  cout << "start" << endl;
   genTree(*a, 4);
   // cout << "score: " << a.randomPlayout() << endl;
   a->deploy();
   // dumpTree(a, 0);
   search(*a, 100000);
-  cout << a->getVisitedCount() << endl;
 
   // lastAnswer(a);
 }
