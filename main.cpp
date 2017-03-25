@@ -150,6 +150,7 @@ int main(int argc, char *argv[]){
     string seedstr = argv[1];
     int treeseed = stoi(seedstr);
     engine.seed(treeseed);
+    cerr << "tree gen seed: " << treeseed << endl;
   }
 
   shared_ptr<Node> a(new Node(0, MAX_NODE));
